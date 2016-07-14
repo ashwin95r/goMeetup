@@ -1,0 +1,23 @@
+throttle  = make(chan time.Time, 3)
+rate      = time.Second	
+func (s *server) Authenticate(ctx context.Context,
+	t *interact.Token) (*interact.Session, error) {
+	select {
+	case <-throttle:
+		return authenticate(ctx, t)
+	case <-time.After(time.Second * 1):
+		return nil, errors.New("Please try again later. Too much load on server.")
+	}
+}
+func rateLimit() {
+	rateTicker := time.NewTicker(rate)
+	defer rateTicker.Stop()
+
+	for t := range rateTicker.C {
+		select {
+		case throttle <- t:
+		default:
+		}
+	}
+}
+go rateLimit()

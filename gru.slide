@@ -5,12 +5,13 @@ Tags: go golang DGraph GRU Quiz
 Ashwin
 ashwin2007ray@gmail.com
 
-* DGraph
+* Agenda
+- Protocol Buffers
+- gRPC
+- Context
+- Other titbits from GRU
 
-- Open-source, Native, Low latency, Distributed, scalable and High throughput Graph Database
-- Written in Go-lang
-
-.caption _DGraph_  [[http://github.com/dgraph-io/dgraph][DGraph]]
+With reference to GRU
 
 * GRU
 
@@ -26,23 +27,10 @@ ashwin2007ray@gmail.com
 - Quiz found better than actual coding problems
 - Adaptive quiz to judge candidates accurately
 - Commandline - So you gotta use it!
-
-* Overview
-
-- *Server*: Servers questions, Maintains state, Takes care of security, attacks
-
-- *Client*: Renders the question, UI, Interaction with the user
-
 - For more details  
 .link https://wiki.dgraph.io/GRU Dgraph wiki
 
-* Focus
-- gRPC
-- Protocol Buffers
-- Context
-
 With reference to GRU
-
 
 * Protocol Buffers
 - Binary encoding format 
@@ -58,25 +46,26 @@ With reference to GRU
 - Proto file is compiled using proto
 - This compiled file is used to encode and decode the data
 
-* Example
-.code proto-code
 
 * gRPC
 - language-neutral, platform-neutral
 - Uses Protocol Buffers as the Serialization format
-- Eg. Dgraph is written in go and has clients in Python, Java, Go.
+- Eg. Dgraph is written in go and has clients in Python, Java, Go
 
 * gRPC Features 
 - Supported in many languages (More than 10 famous ones) 
 - HTTP2 - Bidrectional streaming
-- Authentication, load balancing, 
+- Authentication, load balancing
 - logging and monitoring. We use it in Dgraph
 .link http://dgraph.xyz/debug/requests?fam=Dgraph&b=0&exp=1
 
-* Flow
+* Sample gRPC file
+.code proto-example
 
-.image grpc_flow.png _ 700
-.caption _Image_ by [[https://goel.io/grpc-100/][goel.io]]
+* Authentication using gRPC
+.code auth-client
+
+.code auth-server
 
 * Context
 - Deadlines
@@ -84,8 +73,8 @@ With reference to GRU
 - Other request-scoped values (like Request ID, Username)
 
 * How to use it?
-- Its methods are safe for simultaneous use by multiple goroutines.
-- Should generally be the first parameter in a function call
+- Its methods are safe for simultaneous use by multiple goroutines
+- Should ideally be the first parameter in any function call
 
 * Uses
 - Distributed tracing
@@ -94,10 +83,9 @@ With reference to GRU
 
 * Example Use
 - Each incoming request is handled in its own goroutine
-- Request handlers often start additional goroutines to access backends such as databases and RPC services
+- Request handlers start additional goroutines to access backends
 - The set of goroutines working on a request typically needs access to request-specific values such as the identity of the end user, authorization tokens, and the request's deadline
-- When a request is canceled or times out, all the goroutines working on that request should exit quickly so the system can reclaim any resources they are using.
-
+- On request cancel or time-out, all the goroutines working on that request should exit quickly
 
 * Definition
 .code context.txt
@@ -113,6 +101,12 @@ With reference to GRU
 	ctxC, Cancel = context.WithCancel(ctx)
 	ctxC, Cancel = context.WithTimeout(ctx, <time-difference>)
 	ctxC, Cancel = context.WithDeadline(ctx, <time>)
+
+* Example
+.code proto-code
+
+* Rate-limiting
+.code rate-limit
 
 * References 
 .link https://developers.google.com/protocol-buffers/

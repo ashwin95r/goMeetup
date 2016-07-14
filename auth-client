@@ -1,0 +1,12 @@
+--- Client ---
+	var opts []grpc.DialOption
+	if *tls {
+		var creds credentials.TransportCredentials
+		host := strings.Split(*address, ":")
+		creds = credentials.NewClientTLSFromCert(nil, host[0])
+		opts = append(opts, grpc.WithTransportCredentials(creds))
+	} else {
+		opts = append(opts, grpc.WithInsecure())
+	}
+	opts = append(opts, grpc.WithBlock(), grpc.WithTimeout(TIMEOUT))
+	conn, err = grpc.Dial(*address, opts...)
