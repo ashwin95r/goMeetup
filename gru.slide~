@@ -1,0 +1,73 @@
+﻿GRU: Adaptive quiz tool
+16 July 2016
+Tags: go golang DGraph GRU Quiz
+
+Ashwin
+ashwin2007ray@gmail.com
+
+* DGraph
+
+- Open-source, Native, Low latency, Distributed, scalable and High throughput Graph Database
+- Written in Go-lang
+
+.caption _DGraph_  [[http://github.com/dgraph-io/dgraph][DGraph]]
+
+* GRU
+
+- A character responsible for hiring minions
+- Open-source, Adaptive, Commandline Quiz tool
+
+.image Gru.jpg _ 200
+
+* Motivation
+
+- Not many good platforms to screen candidates or are expensive
+- Quiz found better than actual coding problems
+- Adaptive quiz to judge cancidates accurately
+- Commandline - So you gotta know how to use it!
+
+* Overview
+
+- *Server*: Servers questions, Maintains state, Takes care of security, attacks
+
+- *Client*: Renders the question, UI
+
+- For more details  
+.link https://wiki.dgraph.io/GRU Dgraph wiki
+
+* Focus
+- gRPC
+- Protocol Buffers
+- Context
+
+With reference to GRU
+
+
+* Protocol Buffers
+- Serialising mechanism
+- Language-neutral, Platform-neutral 
+- Smaller, faster, Simpler
+
+* Sample Proto File 
+.code proto-example
+
+* gRPC
+- language-neutral, platform-neutral
+- Uses Protocol Buffers as the Serialization format
+- Eg. Dgraph is written in go and has clients in Python, Java, Go.
+
+* gRPC Features 
+- Supported in many languages (More than 10 famous ones) 
+- HTTP2 - Bidrectional streaming
+
+* Flow 
+-
+
+
+* Context
+-
+
+
+* References 
+- https://developers.google.com/protocol-buffers/
+- 

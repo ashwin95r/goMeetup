@@ -1,0 +1,6 @@
+type Context interface {
+    Done() <-chan struct{}                   // closed when this Context is canceled
+    Err() error                              // why this Context was canceled
+    Deadline() (deadline time.Time, ok bool) // when this Context will be canceled
+    Value(key interface{}) interface{}       // data associated with this Context
+}

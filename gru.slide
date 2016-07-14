@@ -1,0 +1,121 @@
+GRU: Adaptive quiz tool 
+16 July 2016 [My first talk]
+Tags: go golang DGraph GRU Quiz
+
+Ashwin
+ashwin2007ray@gmail.com
+
+* DGraph
+
+- Open-source, Native, Low latency, Distributed, scalable and High throughput Graph Database
+- Written in Go-lang
+
+.caption _DGraph_  [[http://github.com/dgraph-io/dgraph][DGraph]]
+
+* GRU
+
+- At Dgraph, we refer to the team members as Minions
+- GRU is a character responsible for hiring thr right minions
+- Open-source, Adaptive, Commandline Quiz tool
+
+.image Gru.jpg _ 200
+
+* Motivation
+
+- Not many good platforms to screen candidates or are expensive
+- Quiz found better than actual coding problems
+- Adaptive quiz to judge cancidates accurately
+- Commandline - So you gotta use it!
+
+* Overview
+
+- *Server*: Servers questions, Maintains state, Takes care of security, attacks
+
+- *Client*: Renders the question, UI
+
+- For more details  
+.link https://wiki.dgraph.io/GRU Dgraph wiki
+
+* Focus
+- gRPC
+- Protocol Buffers
+- Context
+
+With reference to GRU
+
+
+* Protocol Buffers
+- Binary encoding format 
+- Allows specification of schema
+- Language-neutral, Platform-neutral 
+- Backward compatible
+- Smaller, faster, Simpler
+
+* Sample Proto File 
+.code proto-example
+
+* Working
+- Proto file is compiled using proto
+- This compiled file is used to encode and decode the data
+
+* Example
+.code proto-code
+
+* gRPC
+- language-neutral, platform-neutral
+- Uses Protocol Buffers as the Serialization format
+- Eg. Dgraph is written in go and has clients in Python, Java, Go.
+
+* gRPC Features 
+- Supported in many languages (More than 10 famous ones) 
+- HTTP2 - Bidrectional streaming
+- Authentication, load balancing, 
+- logging and monitoring. We use it in Dgraph
+.link http://dgraph.xyz/debug/requests?fam=Dgraph&b=0&exp=1
+
+* Flow
+
+.image grpc_flow.png _ 700
+.caption _Image_ by [[https://goel.io/grpc-100/][goel.io]]
+
+* Context
+- Deadlines
+- Cancelation signals
+- Other request-scoped values (like Request ID, Username)
+
+* How to use it?
+- Its methods are safe for simultaneous use by multiple goroutines.
+- Should generally be the first parameter in a function call
+
+* Uses
+- Distributed tracing
+- Request cancellation
+- Passing context-based values
+
+* Example Use
+- Each incoming request is handled in its own goroutine
+- Request handlers often start additional goroutines to access backends such as databases and RPC services
+- The set of goroutines working on a request typically needs access to request-specific values such as the identity of the end user, authorization tokens, and the request's deadline
+- When a request is canceled or times out, all the goroutines working on that request should exit quickly so the system can reclaim any resources they are using.
+
+
+* Definition
+.code context.txt
+
+* Types of Nodes
+- TODO Node
+	Dummy context (In case you want to use it in future)
+- Background/root Node
+	ctx = context.Background()
+- Value Node
+	ctxWithVal = context.WithValue(ctx, "Name", "Alice")
+- Cancellable Node
+	ctxC, Cancel = context.WithCancel(ctx)
+	ctxC, Cancel = context.WithTimeout(ctx, <time-difference>)
+	ctxC, Cancel = context.WithDeadline(ctx, <time>)
+
+* References 
+.link https://developers.google.com/protocol-buffers/
+.link https://goel.io/grpc-100/
+.link https://blog.golang.org/context
+.link https://talks.golang.org/2014/gotham-context.slide#13

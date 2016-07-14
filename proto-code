@@ -1,0 +1,24 @@
+--- Client ---	
+	ctx, cancel := context.WithTimeout(context.Background(), TIMEOUT)
+	ses, err := client.Authenticate(ctx, &interact.Token{Id: *token})
+	cancel()
+	
+--- Server ---
+	func (s *server) Authenticate(ctx context.Context,
+		t *interact.Token) (*interact.Session, error) {
+		select {
+		case <-throttle:
+			return authenticate(ctx, t)
+		case <-time.After(time.Second * 1):
+			return nil, errors.New("Please try again later. Too much load on server.")
+		}
+	}
+	func authenticate(ctx context.Context,
+	t *interact.Token) (*interact.Session, error) {
+		if d, ok := ctx.Deadline(); ok && d.Before(time.Now()) {
+			return &interact.Session{}, errors.New("Context deadline has passed.")
+		}
+		.
+		.
+		.
+	}		

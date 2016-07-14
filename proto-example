@@ -1,0 +1,24 @@
+syntax="proto3";
+package interact;
+service GruQuiz {
+	rpc Authenticate (Token) returns (Session) {}
+	rpc Ping (ClientStatus) returns (ServerStatus) {}
+}
+message ServerStatus {
+	string timeLeft = 1;
+	string status = 2;
+}
+message ClientStatus {
+	string curQuestion = 1;
+	string token = 2;
+}
+message Token {
+	string id = 1;
+}
+message Session {
+	string id = 1;
+	string timeLeft = 2;
+	string testDuration = 3;
+	string demoDuration = 4;
+}
+
