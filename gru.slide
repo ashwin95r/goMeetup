@@ -1,6 +1,6 @@
 GRU: Adaptive quiz tool 
 16 July 2016 [My first talk]
-Tags: go golang DGraph GRU Quiz
+Tags: go golang Dgraph GRU Quiz
 
 Ashwin
 ashwin2007ray@gmail.com
@@ -29,8 +29,6 @@ With reference to GRU
 - Commandline - So you gotta use it!
 - For more details  
 .link https://wiki.dgraph.io/GRU Dgraph wiki
-
-With reference to GRU
 
 * Protocol Buffers
 - Binary encoding format 
@@ -72,6 +70,9 @@ With reference to GRU
 - Cancelation signals
 - Other request-scoped values (like Request ID, Username)
 
+.image rpc_flow.png
+.caption Image: [[http://www.slideshare.net/exotel/gophercon-talk-by-smita-vijayakumar-gos-context-library][source]]
+
 * How to use it?
 - Its methods are safe for simultaneous use by multiple goroutines
 - Should ideally be the first parameter in any function call
@@ -83,9 +84,9 @@ With reference to GRU
 
 * Example Use
 - Each incoming request is handled in its own goroutine
-- Request handlers start additional goroutines to access backends
-- The set of goroutines working on a request typically needs access to request-specific values such as the identity of the end user, authorization tokens, and the request's deadline
-- On request cancel or time-out, all the goroutines working on that request should exit quickly
+- Further start additional goroutines to access backends [Call other servers, DB, etc.]
+- Share request specific values across coworking Go-routines
+- On request cancel or time-out: Goroutines working on that request should exit
 
 * Definition
 .code context.txt
@@ -113,3 +114,4 @@ With reference to GRU
 .link https://goel.io/grpc-100/
 .link https://blog.golang.org/context
 .link https://talks.golang.org/2014/gotham-context.slide#13
+.link http://www.slideshare.net/exotel/gophercon-talk-by-smita-vijayakumar-gos-context-library
