@@ -24,14 +24,14 @@ ashwin2007ray@gmail.com
 
 - Not many good platforms to screen candidates or are expensive
 - Quiz found better than actual coding problems
-- Adaptive quiz to judge cancidates accurately
+- Adaptive quiz to judge candidates accurately
 - Commandline - So you gotta use it!
 
 * Overview
 
 - *Server*: Servers questions, Maintains state, Takes care of security, attacks
 
-- *Client*: Renders the question, UI
+- *Client*: Renders the question, UI, Interaction with the user
 
 - For more details  
 .link https://wiki.dgraph.io/GRU Dgraph wiki
