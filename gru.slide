@@ -3,15 +3,16 @@ GRU: Adaptive quiz tool
 Tags: go golang Dgraph GRU Quiz
 
 Ashwin
+@ashwin_rrr
 ashwin2007ray@gmail.com
+
 
 * Agenda
 - Protocol Buffers
 - gRPC
 - Context
 - Other titbits from GRU
-
-With reference to GRU
+- Demo of GRU
 
 * GRU
 
@@ -43,7 +44,8 @@ With reference to GRU
 * Working
 - Proto file is compiled using proto
 - This compiled file is used to encode and decode the data
-
+- Compilation for gRPC: 
+	protoc --go_out=plugins=grpc:. *.proto
 
 * gRPC
 - language-neutral, platform-neutral
@@ -54,7 +56,7 @@ With reference to GRU
 - Supported in many languages (More than 10 famous ones) 
 - HTTP2 - Bidrectional streaming
 - Authentication, load balancing
-- logging and monitoring. We use it in Dgraph
+- logging and monitoring (Using trace package). We use it in Dgraph
 .link http://dgraph.xyz/debug/requests?fam=Dgraph&b=0&exp=1
 
 * Sample gRPC file
@@ -113,8 +115,10 @@ With reference to GRU
 .link https://drive.google.com/open?id=0B9cl-atGkz1cZFNpRzNGTFFFUEE
 
 * References 
-.link https://developers.google.com/protocol-buffers/
-.link https://goel.io/grpc-100/
-.link https://blog.golang.org/context
-.link https://talks.golang.org/2014/gotham-context.slide#13
-.link http://www.slideshare.net/exotel/gophercon-talk-by-smita-vijayakumar-gos-context-library
+- [[https://developers.google.com/protocol-buffers/]]
+- [[https://goel.io/grpc-100/]]
+- [[https://blog.golang.org/context]]
+- [[https://talks.golang.org/2014/gotham-context.slide#13]]
+- [[http://www.slideshare.net/exotel/gophercon-talk-by-smita-vijayakumar-gos-context-library]]
+
+*Thanks*to* Dgraph Team: Manish, Pawan
