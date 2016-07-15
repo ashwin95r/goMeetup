@@ -109,6 +109,9 @@ With reference to GRU
 * Rate-limiting
 .code rate-limit
 
+* Gru-client
+.link https://drive.google.com/open?id=0B9cl-atGkz1cZFNpRzNGTFFFUEE
+
 * References 
 .link https://developers.google.com/protocol-buffers/
 .link https://goel.io/grpc-100/
