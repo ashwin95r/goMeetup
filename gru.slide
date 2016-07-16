@@ -107,6 +107,9 @@ ashwin2007ray@gmail.com
     ctxC, Cancel = context.WithDeadline(ctx, <time>)
 
 * Example
+.code context-example
+
+* Example
 .code proto-code
 
 * Rate-limiting
