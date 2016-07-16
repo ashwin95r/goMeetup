@@ -17,7 +17,7 @@ ashwin2007ray@gmail.com
 * GRU
 
 - At Dgraph, we refer to the team members as Minions
-- GRU is a character responsible for hiring thr right minions
+- GRU is a character responsible for hiring the right minions
 - Open-source, Adaptive, Commandline Quiz tool
 
 .image Gru.jpg _ 200
@@ -42,19 +42,20 @@ ashwin2007ray@gmail.com
 .code proto-example
 
 * Working
-- Proto file is compiled using proto
+- Proto file is compiled using *protoc* compiler
 - This compiled file is used to encode and decode the data
 - Compilation for gRPC: 
-	protoc --go_out=plugins=grpc:. *.proto
+    protoc --go_out=plugins=grpc:. *.proto
 
 * gRPC
 - language-neutral, platform-neutral
 - Uses Protocol Buffers as the Serialization format
+- Provides RPC and streaming RPC functionalities
 - Eg. Dgraph is written in go and has clients in Python, Java, Go
 
 * gRPC Features 
 - Supported in many languages (More than 10 famous ones) 
-- HTTP2 - Bidrectional streaming
+- HTTP2 - Bidirectional streaming
 - Authentication, load balancing
 - logging and monitoring (Using trace package). We use it in Dgraph
 .link http://dgraph.xyz/debug/requests?fam=Dgraph&b=0&exp=1
@@ -95,15 +96,15 @@ ashwin2007ray@gmail.com
 
 * Types of Nodes
 - TODO Node
-	Dummy context (In case you want to use it in future)
+    Dummy context (In case you want to use it in future)
 - Background/root Node
-	ctx = context.Background()
+    ctx = context.Background()
 - Value Node
-	ctxWithVal = context.WithValue(ctx, "Name", "Alice")
+    ctxWithVal = context.WithValue(ctx, "Name", "Alice")
 - Cancellable Node
-	ctxC, Cancel = context.WithCancel(ctx)
-	ctxC, Cancel = context.WithTimeout(ctx, <time-difference>)
-	ctxC, Cancel = context.WithDeadline(ctx, <time>)
+    ctxC, Cancel = context.WithCancel(ctx)
+    ctxC, Cancel = context.WithTimeout(ctx, <time-difference>)
+    ctxC, Cancel = context.WithDeadline(ctx, <time>)
 
 * Example
 .code proto-code
